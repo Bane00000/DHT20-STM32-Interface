@@ -1,4 +1,4 @@
-# DHT20 - Temperature and humidity sensor
+# DHT20 - STM32 Interface
 
 ## Overview
 
