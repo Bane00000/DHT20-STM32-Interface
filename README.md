@@ -46,5 +46,9 @@ This is the data flow: first, the measurement command is sent, followed by readi
 
 ![image](https://github.com/user-attachments/assets/f4cdb6dd-d338-4d3c-bbee-b7f967951812)
 
+## Acknowledgments
+The drivers used in this project (EXCEPT DRIVERS FOR TIMER AND DHT20) were developed as part of the course I followed on STM32 programming. These files provided the foundation for configuring the STM32F407VG microcontroller's peripherals and implementing the communication protocols.
+**Course link:** https://www.udemy.com/course/mastering-microcontroller-with-peripheral-driver-development/
+
 ## References
 **DHT20 product and datasheet:** https://www.sparkfun.com/humidity-and-temperature-sensor-dht20.html
