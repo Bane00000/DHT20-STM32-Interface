@@ -1,29 +1,50 @@
-# Temperature-Sensor-DHT20
+# DHT20 - Temperature and humidity sensor
 
 ## Overview
 
-This project is about reading from a temperature sensor DHT20 using STM32F407G-DISC1 (STM32F407VG MCU). DHT20 uses a standard I2C data output signal format. No hardware abstaction library was used, everything was written from scratch. Including GPIO, I2C, RCC, Timer, STM32F407VG and DHT20 drivers.
+This project involves interfacing the DHT20 temperature and humidity sensor with the STM32F407G-DISC1 development board, which features the STM32F407VG microcontroller. The DHT20 sensor communicates via the I²C protocol, and this project implements the entire communication process from scratch without relying on any hardware abstraction libraries (HAL).
+
+The project includes:
+* **GPIO Configuration:** Manual configuration of the General-Purpose Input/Output pins for sensor communication.
+* **I²C Communication:** Full implementation of the I²C protocol to communicate with the DHT20, including signal timing, reading sensor data, and error handling.
+* **RCC (Reset and Clock Control):** Direct configuration of the microcontroller's clock system to ensure correct timing for sensor communication and system stability.
+* **Timer Implementation:** Use of timers for precise delays and synchronization needed for the sensor data collection process.
+* **Drivers:** Custom drivers written for both the STM32F407VG microcontroller and the DHT20 sensor, focusing on low-level control and efficiency.
+
+By avoiding HAL libraries, this project provides a deeper understanding of microcontroller programming and low-level hardware control, focusing on bare-metal programming principles. It also demonstrates debugging techniques using a logic analyzer to ensure accurate data transmission over the I²C bus.
 
 ## Technical Aspects
 
-The code requires multiple stuff to be written in order to get DHT20 to work:
-* The neccessary drivers in order to use the MCU peripherals,
-* DHT20 drivers, which uses I2C in order to send and receive data.
+To successfully interface with the DHT20 temperature and humidity sensor using the STM32F407G-DISC1 (STM32F407VG), several technical components were developed and configured. These include low-level drivers and direct management of microcontroller peripherals:
 
-In order to test the data being sent and received, I used a logic analyzer.
+1. **MCU Peripheral Drivers:**
+Custom drivers were written to interface with the STM32F407VG's peripherals. This included configuring the General-Purpose Input/Output (GPIO) pins for communication with the DHT20 sensor and setting up the I²C bus to ensure reliable data transfer. The code directly controls the microcontroller's Reset and Clock Control (RCC) to manage the clock system for the correct timing and synchronization of operations.
 
-## DHT20 datasheet
-There are a couple steps to be taken in order to get the DHT20 to work. The first thing to do is connect the DHT20 with the board, and then write the code. 
+2. **DHT20 Driver:**
+A dedicated driver was created for the DHT20 sensor, which communicates over the I²C protocol. The driver implements the full I²C communication protocol, including:
+* **Start/Stop Conditions:** Handling I²C bus conditions to initiate and terminate data transfers.
+* **Data Transmission:** Sending read/write requests to the DHT20 and retrieving temperature and humidity data.
+* **Error Handling:** Ensuring reliable communication by managing potential transmission errors, such as timeouts or corrupted data.
 
-Reading the datasheet, the way to connect with the DHT20 sensor is as the image implies.
+3. **Timer and Delay Management:**
+Timers were used to introduce necessary delays for proper sensor data sampling and communication timing, particularly in line with the sensor's required read interval. This allows for accurate data readings and ensures synchronization with the I²C protocol.
+
+4. **Debugging and Testing with Logic Analyzer:**
+To verify the I²C communication and ensure proper data transmission between the microcontroller and the sensor, a logic analyzer was used. This tool allowed real-time monitoring of the data sent and received over the I²C bus, providing valuable insights into the signal integrity and data consistency. The analyzer helped identify and troubleshoot timing issues and communication errors during development.
+
+## Interfacing with DHT20 Sensor
+To get the DHT20 working, the first step is to connect the sensor to the development board, followed by writing the necessary code to interface with it.
+
+Referring to the datasheet, the DHT20 sensor should be connected as shown in the following image.
 ![image](https://github.com/user-attachments/assets/17e9108c-a3c6-40c6-a098-083ebe9e4e77)
 
-These are the steps covered in order to read the data from the sensor:
+The following steps outline the process for reading data from the DHT20 sensor:
 ![image](https://github.com/user-attachments/assets/1e2616e1-d3a4-42d9-98ab-e42090bd0863)
 
-This is how the data looks like, sending the measuerment command and then reading the data:
-
+This is the data flow: first, the measurement command is sent, followed by reading the data:
 ![image](https://github.com/user-attachments/assets/17c6117e-bb86-42ce-b1d2-d5e97f53f55f)
 
 ![image](https://github.com/user-attachments/assets/f4cdb6dd-d338-4d3c-bbee-b7f967951812)
 
+## References
+**DHT20 product and datasheet:** https://www.sparkfun.com/humidity-and-temperature-sensor-dht20.html
