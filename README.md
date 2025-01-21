@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project involves interfacing the DHT20 temperature and humidity sensor with the STM32F407G-DISC1 development board, which features the STM32F407VG microcontroller. The DHT20 sensor communicates via the I²C protocol, and this project implements the entire communication process from scratch without relying on any hardware abstraction libraries (HAL).
+This project involves interfacing the DHT20 temperature and humidity sensor with the STM32F407G-DISC1 development board, which features the STM32F407VG microcontroller in STM32CubeIDE. The DHT20 sensor communicates via the I²C protocol, and this project implements the entire communication process from scratch without relying on any hardware abstraction libraries (HAL).
 
 The project includes:
 * **GPIO Configuration:** Manual configuration of the General-Purpose Input/Output pins for sensor communication.
@@ -45,6 +45,14 @@ This is the data flow: first, the measurement command is sent, followed by readi
 ![image](https://github.com/user-attachments/assets/17c6117e-bb86-42ce-b1d2-d5e97f53f55f)
 
 ![image](https://github.com/user-attachments/assets/f4cdb6dd-d338-4d3c-bbee-b7f967951812)
+
+Temperature and humidity values during debugging: <br>
+![Capture](https://github.com/user-attachments/assets/34aa3f5f-a041-4d31-9666-124e06d288b6)
+![capture2](https://github.com/user-attachments/assets/76f06f1f-cb74-4244-a163-f7507190f894)
+
+
+## Potential Upgrades
+Since there is no way to see the temperature and humidity value unless debugging the code and checking the values, a good way to solve this would be to incorporate a LCD screen to show off the temeprature and humidity values.
 
 ## Acknowledgments
 The drivers used in this project (EXCEPT DRIVERS FOR TIMER AND DHT20) were developed as part of the course I followed on STM32 programming. These files provided the foundation for configuring the STM32F407VG microcontroller's peripherals and implementing the communication protocols.
