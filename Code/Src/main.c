@@ -28,7 +28,6 @@ void GPIO_ButtonInit(void)
 
 }
 
-// https://www.youtube.com/watch?v=HBjws896hPA&t=1015s
 int main(void)
 {
 	// Wait 100ms
